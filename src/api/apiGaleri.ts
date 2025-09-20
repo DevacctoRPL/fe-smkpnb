@@ -21,13 +21,13 @@ export interface GaleriItem {
 
 const getGaleri = async (): Promise<GaleriItem[]> => {
   try {
-    const response = await axios.get('https://api.smkpluspnb.sch.id/api/api/v1/misc/index');
+    const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/misc/index`);
     const galeriData: ApiGaleriItem[] = response.data.data.galeri;
 
     // Map data dari API ke bentuk yang sesuai dengan GaleriItem
     const galeriList = galeriData.map((item: ApiGaleriItem) => ({
       id: item.galeri_id,
-      image: `https://api.smkpluspnb.sch.id/storage/${item.image}`, // Mengubah path gambar menjadi URL lengkap
+      image: `${import.meta.env.VITE_API_BASE_URL}/storage/${item.image}`, // Mengubah path gambar menjadi URL lengkap
       title: item.title,
       date: new Date(item.created_at).toLocaleDateString(), // Format tanggal
     }));

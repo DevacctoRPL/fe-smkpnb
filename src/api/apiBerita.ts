@@ -15,7 +15,7 @@ interface ApiBeritaItem {
 }
 
 interface NewsItem {
-  id: number;
+  id: string;
   title: string;
   description: string;
   image: string;
@@ -27,19 +27,21 @@ interface NewsItem {
 
 const getBerita = async (): Promise<NewsItem[]> => {
   try {
-    const response = await axios.get('https://api.smkpluspnb.sch.id/api/api/v1/misc/index');
-    const beritaData: ApiBeritaItem[] = response.data.data.berita;
+    const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/misc/berita`);
+    const beritaData: ApiBeritaItem[] = response.data?.data || [];
 
     const newsList = beritaData.map((item: ApiBeritaItem) => ({
-      id: item.id,
+      id: item.berita_id,
       title: item.title,
       description: item.subtitle,
-      image: `https://api.smkpluspnb.sch.id/storage/${item.images}`,
+      image: `${import.meta.env.VITE_API_BASE_URL}/storage/${item.images}`,
       content: item.description,
       updated_at: item.updated_at,
       author: item.author,
       tags: item.tags,
     }));
+
+    newsList.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
 
     return newsList;
   } catch (error) {

@@ -1,8 +1,11 @@
+import { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import App from '@/App';
-import MainPages from '@/pages/MainPages';
-import DetailNews from '@/pages/DetailNews';
-// import NewsList from '@/pages/ListNews';
+
+const MainPages = lazy(() => import('@/pages/MainPages'));
+const DetailNews = lazy(() => import('@/pages/DetailNews'));
+const ListNewsPage = lazy(() => import('@/pages/ListNewsPage'));
+const ListGallery = lazy(() => import('@/pages/ListGallery'));
 
 const router = createBrowserRouter([
   {
@@ -11,13 +14,21 @@ const router = createBrowserRouter([
     children: [
         {
             path: '/',
-            element: <MainPages />,
+            element: <Suspense fallback={<div>Loading...</div>}><MainPages /></Suspense>,
+        },
+        {
+            path: '/news-list',
+            element: <Suspense fallback={<div>Loading...</div>}><ListNewsPage /></Suspense>,
+        },
+        {
+            path: '/gallery-list',
+            element: <Suspense fallback={<div>Loading...</div>}><ListGallery /></Suspense>,
         },
     ],
     },
     {
         path: '/news/:id',
-        element: <DetailNews />,
+        element: <Suspense fallback={<div>Loading...</div>}><DetailNews /></Suspense>,
         // children: [
         //     {
         //         path: '/news/:id',

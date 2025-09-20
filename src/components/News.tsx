@@ -78,7 +78,7 @@ const News: React.FC = () => {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
+              className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-gray-800 sm:rounded-3xl overflow-hidden"
             >
               <motion.div layoutId={`image-${active.title}-${id}`}>
                 <img
@@ -102,22 +102,18 @@ const News: React.FC = () => {
                     </motion.h3>
                     <motion.p
                       layoutId={`description-${active.description}-${id}`}
-                      className="text-neutral-600 dark:text-neutral-400 text-base"
+                      className="text-neutral-600 dark:text-neutral-200 text-base"
                     >
                       {active.description}
                     </motion.p>
                   </div>
                   {/* Tombol "Visit" di modal */}
                   <motion.a
-                    onClick={() => navigate(`/news/${id}`)}
+                    onClick={() => window.location.href = `/news/${active.id}` }
                     layout
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    href="/news/${active.id}"
-                    rel="noopener noreferrer"
-                    referrerPolicy="no-referrer"
-                    target="_blank"
                     className="px-3 py-2 text-sm rounded-full font-bold bg-gradient-to-tr from-red-800 via-red-700 to-red-600 text-white hover:bg-gradient-to-br hover:from-red-700 hover:via-red-800 hover:to-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-100 focus:ring-red-600 transition-all duration-300 ease-in-out"
                   >
                     Kunjungi
@@ -129,7 +125,7 @@ const News: React.FC = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                    className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-200 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                   >
                     {active.content}
                   </motion.div>
@@ -140,12 +136,12 @@ const News: React.FC = () => {
         ) : null}
       </AnimatePresence>
       <ul className="max-w-2xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-start gap-4">
-        {data?.map((item: NewsItem) => (
+        {data?.slice(0, 4).map((item: NewsItem) => (
           <li key={item.id}>
             <motion.div
               layoutId={`card-${item.title}-${id}`}
               onClick={() => setActive(item)}
-              className="p-4 flex flex-col hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
+              className="p-4 flex flex-col bg-white dark:bg-gray-800 shadow-sm border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700 rounded-xl cursor-pointer"
             >
               <div className="flex gap-4 flex-col w-full">
                 <motion.div layoutId={`image-${item.title}-${id}`}>
@@ -168,7 +164,7 @@ const News: React.FC = () => {
                   </motion.h3>
                   <motion.p
                     layoutId={`description-${item.description}-${id}`}
-                    className="text-neutral-600 dark:text-neutral-400 text-center md:text-left text-base"
+                    className="text-neutral-600 dark:text-neutral-200 text-center md:text-left text-base"
                   >
                     {item.description}
                   </motion.p>
@@ -179,7 +175,7 @@ const News: React.FC = () => {
         ))}
       </ul>
       <div className="flex justify-center mt-10">
-        <Button text="Lihat Lebih Banyak Berita" />
+        <Button text="Lihat Lebih Banyak Berita" onClick={() => navigate('/news-list')} />
       </div>
     </div>
   );

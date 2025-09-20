@@ -7,6 +7,7 @@ const BidangKeahlian: React.FC = () => {
     <section className="flex flex-col mx-4">
       <div className="xl:ml-64 xl:mr-64 md:ml-32 md:mr-32  mt-8 md:flex md:justify-center xl:justify-center">
         <img
+          loading="lazy"
           className="w-full xs:min-w-[55%] sm:min-w-[40%] sm:min-h[40%] rounded-lg border-4 md:border-2"
           src={jurusan}
           alt="Informasi Bidang Keahlian"

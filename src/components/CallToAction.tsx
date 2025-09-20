@@ -7,6 +7,7 @@ const CallToAction: React.FC = () => {
     <section id='' className="mt-6 md:mt-8 xl:mt-16">
       <div className="relative">
         <img
+          loading="lazy"
           className="object-cover w-full h-[580px] xl:h-[700px] brightness-50"
           src={banner}
           alt="Bergabung bersama kami"

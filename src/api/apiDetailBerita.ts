@@ -15,8 +15,13 @@ export interface NewsDetail {
 
 const getDetailBerita = async (id: string): Promise<NewsDetail> => {
   try {
-    const response = await axios.get(`https://api.smkpluspnb.sch.id/api/api/v1/berita/show/${id}`);
-    return response.data.data; // Sesuaikan dengan struktur respons API
+    const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/berita/show/${id}`);
+    const detailBeritaData = response.data.data;
+
+    return {
+      ...detailBeritaData,
+      images: `${import.meta.env.VITE_API_BASE_URL}/storage/${detailBeritaData.images}`,
+    };
   } catch (error) {
     console.error(error);
     throw new Error('Failed to fetch detail berita');

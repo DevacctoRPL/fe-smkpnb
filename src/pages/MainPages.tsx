@@ -8,11 +8,17 @@ import CallToAction from '@/components/CallToAction';
 import Gallery from '@/components/Gallery';
 import SocialMedia from '@/components/SocialMedia';
 import BannerText from '@/components/BannerText';
+import Header from '@/components/Header'; // Import Header
+import { useActiveSection } from '@/hooks/useActiveSection'; // Import useActiveSection
 
 const MainPages: React.FC = () => {
+    const sectionIds = ['video-player', 'profile', 'bidang-keahlian', 'banner-sapras', 'sapras', 'banner-news', 'News', 'call-to-action', 'galeri', 'sosmed'];
+    const activeSection = useActiveSection(sectionIds);
+
     return (
         <>
-           <section id="video-player">
+            <Header activeSection={activeSection} /> {/* Pass activeSection as prop */}
+            <section id="video-player">
                 <VideoPlayerDash />
             </section>
             <section id="profile">
@@ -21,13 +27,13 @@ const MainPages: React.FC = () => {
             <section id="bidang-keahlian">
                 <BidangKeahlian />
             </section>
-            <section id="banner" className='mt-16'>
+            <section id="banner-sapras" className='mt-16'>
                 <BannerText text="Sarana Pra-Sarana" />
             </section>
             <section id="sapras">
                 <Sapras />
             </section>
-            <section id="banner" className='my-16'>
+            <section id="banner-news" className='my-16'>
                 <BannerText text="Latest News" />
             </section>
             <section id="News">

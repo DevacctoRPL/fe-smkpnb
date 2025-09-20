@@ -16,11 +16,11 @@ interface SaprasImage {
 
 const getSapras = async (): Promise<SaprasImage[]> => {
   try {
-    const response = await axios.get('https://api.smkpluspnb.sch.id/api/api/v1/misc/index');
+    const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/misc/index`);
     const saranaData: SaranaItem[] = response.data.data.sarana;
     const saprasImages = saranaData.map((item: SaranaItem) => ({
       id: item.sarana_id,
-      src: `https://api.smkpluspnb.sch.id/storage/${item.image}`,
+      src: `${import.meta.env.VITE_API_BASE_URL}/storage/${item.image}`,
       title: item.title,
     }));
     return saprasImages;

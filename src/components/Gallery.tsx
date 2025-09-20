@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { getGaleri } from '@/api/apiGaleri';
 import { GaleriItem } from '@/api/apiGaleri';
 import Button from '@/components/Button';
+import { useNavigate } from 'react-router-dom';
 
 interface GalleryImage {
   id: string;
@@ -22,6 +23,8 @@ const Gallery: React.FC = () => {
     container: gridRef,
     offset: ['start start', 'end start'],
   });
+
+  const navigate = useNavigate();
 
   const translateFirst = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const translateSecond = useTransform(scrollYProgress, [0, 1], [0, 200]);
@@ -49,12 +52,17 @@ const Gallery: React.FC = () => {
     src: item.image,
     alt: item.title,
     title: item.title,
-  }));
+  })).slice(-6);
 
   const third = Math.ceil(transformedImages.length / 3);
   const firstPart = transformedImages.slice(0, third);
   const secondPart = transformedImages.slice(third, 2 * third);
   const thirdPart = transformedImages.slice(2 * third);
+
+
+  const handleViewMore = () => {
+    navigate('/gallery-list');
+  };
 
   return (
     <section id="galeri" className="ml-8 mr-8">
@@ -78,6 +86,7 @@ const Gallery: React.FC = () => {
                 >
                   <div className="group relative flex h-48 md:h-80 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg">
                     <img
+                      loading="lazy"
                       src={image.src}
                       alt={image.alt}
                       className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
@@ -94,7 +103,7 @@ const Gallery: React.FC = () => {
         </div>
       </div>
       <div className='flex justify-center mt-2'>
-        <Button text="Lihat Lebih Banyak Galeri" />
+        <Button text="Lihat Lebih Banyak Galeri" onClick={handleViewMore} />
       </div>
     </section>
   );

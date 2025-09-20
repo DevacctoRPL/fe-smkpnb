@@ -12,6 +12,7 @@ const Profile: React.FC = () => {
       <div className="mt-12 flex justify-center items-center">
         <button onClick={toggleTheme}>
           <img
+            loading="lazy"
             src={isDarkMode ? moon : sun}
             alt="toggle theme"
             className="w-12 transition ease-in-out transition-transform-[0.3s]"

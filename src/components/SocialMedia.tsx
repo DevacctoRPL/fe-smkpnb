@@ -19,7 +19,7 @@ const SocialMedia: React.FC = () => {
                 href="https://www.instagram.com/smkpluspelitanusantara/"
                 className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-100 dark:bg-gray-900"
               >
-                <img className="w-5" src={instagram} alt="Instagram" />
+                <img loading="lazy" className="w-5" src={instagram} alt="Instagram" />
                 <span className="flex-1 ms-3 whitespace-nowrap dark:text-slate-200">Instagram</span>
                 <span className="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-bold text-red-600">
                   Popular!
@@ -32,7 +32,7 @@ const SocialMedia: React.FC = () => {
                 href="https://www.youtube.com/@smkpluspelitanusantara9719"
                 className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-100 dark:bg-gray-900"
               >
-                <img className="w-5" src={youtube} alt="YouTube" />
+                <img loading="lazy" className="w-5" src={youtube} alt="YouTube" />
                 <span className="flex-1 ms-3 whitespace-nowrap dark:text-slate-200 ">YouTube</span>
               </a>
             </li>
@@ -42,7 +42,7 @@ const SocialMedia: React.FC = () => {
                 href="https://api.whatsapp.com/send/?phone=6281210868958&text&type=phone_number&app_absent=0"
                 className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-100 dark:bg-gray-900"
               >
-                <img className="w-5" src={whatsapp} alt="WhatsApp" />
+                <img loading="lazy" className="w-5" src={whatsapp} alt="WhatsApp" />
                 <span className="flex-1 ms-3 whitespace-nowrap dark:text-slate-200">WhatsApp</span>
               </a>
             </li>
@@ -52,7 +52,7 @@ const SocialMedia: React.FC = () => {
                 href="https://www.tiktok.com/@smkppelitanusantaracbng"
                 className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-100 dark:bg-gray-900"
               >
-                <img className="w-5" src={tiktok} alt="TikTok" />
+                <img loading="lazy" className="w-5" src={tiktok} alt="TikTok" />
                 <span className="flex-1 ms-3 whitespace-nowrap dark:text-slate-200">TikTok</span>
               </a>
             </li>
