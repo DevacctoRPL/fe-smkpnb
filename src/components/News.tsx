@@ -79,8 +79,9 @@ const News: React.FC = () => {
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
               className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-gray-800 sm:rounded-3xl overflow-hidden"
+              style={{ viewTransitionName: `card-${active.title}-${id}` }}
             >
-              <motion.div layoutId={`image-${active.title}-${id}`}>
+              <motion.div layoutId={`image-${active.title}-${id}`} style={{ viewTransitionName: `image-${active.title}-${id}` }}>
                 <img
                   loading="lazy"
                   decoding="async"
@@ -97,19 +98,24 @@ const News: React.FC = () => {
                     <motion.h3
                       layoutId={`title-${active.title}-${id}`}
                       className="font-medium text-neutral-700 dark:text-neutral-200 text-base"
+                      style={{ viewTransitionName: `title-${active.title}-${id}` }}
                     >
                       {active.title}
                     </motion.h3>
                     <motion.p
                       layoutId={`description-${active.description}-${id}`}
                       className="text-neutral-600 dark:text-neutral-200 text-base"
+                      style={{ viewTransitionName: `description-${active.description}-${id}` }}
                     >
                       {active.description}
                     </motion.p>
                   </div>
                   {/* Tombol "Visit" di modal */}
                   <motion.a
-                    onClick={() => window.location.href = `/news/${active.id}` }
+                    onClick={() => {
+                      setActive(null); // Close the modal first
+                      navigate(`/news/${active.id}`);
+                    }}
                     layout
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -142,9 +148,10 @@ const News: React.FC = () => {
               layoutId={`card-${item.title}-${id}`}
               onClick={() => setActive(item)}
               className="p-4 flex flex-col bg-white dark:bg-gray-800 shadow-sm border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700 rounded-xl cursor-pointer"
+              style={{ viewTransitionName: `card-${item.title}-${id}` }}
             >
               <div className="flex gap-4 flex-col w-full">
-                <motion.div layoutId={`image-${item.title}-${id}`}>
+                <motion.div layoutId={`image-${item.title}-${id}`} style={{ viewTransitionName: `image-${item.title}-${id}` }}>
                   <img
                     loading="lazy"
                     decoding="async"
@@ -159,12 +166,14 @@ const News: React.FC = () => {
                   <motion.h3
                     layoutId={`title-${item.title}-${id}`}
                     className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left text-base"
+                    style={{ viewTransitionName: `title-${item.title}-${id}` }}
                   >
                     {item.title}
                   </motion.h3>
                   <motion.p
                     layoutId={`description-${item.description}-${id}`}
                     className="text-neutral-600 dark:text-neutral-200 text-center md:text-left text-base"
+                    style={{ viewTransitionName: `description-${item.description}-${id}` }}
                   >
                     {item.description}
                   </motion.p>
