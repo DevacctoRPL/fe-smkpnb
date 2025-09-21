@@ -52,7 +52,7 @@ const Gallery: React.FC = () => {
     src: item.image,
     alt: item.title,
     title: item.title,
-  })).slice(-6);
+  })).slice(-9);
 
   const third = Math.ceil(transformedImages.length / 3);
   const firstPart = transformedImages.slice(0, third);

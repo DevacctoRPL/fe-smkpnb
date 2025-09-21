@@ -30,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
     };
 
     return (
-        <header className='px-1 py-1 flex justify-between items-center sticky top-0 bg-white shadow-lg backdrop-blur-[1.75px] z-[999] dark:bg-gray-800 dark:text-slate-200'>
+        <header className='px-1 py-1 flex justify-start items-center sticky top-0 bg-white shadow-lg backdrop-blur-[1.75px] z-[999] dark:bg-gray-800 dark:text-slate-200'>
             <Link to="/" onClick={() => handleScrollToSection('video-player')}>
                 <img
                     loading="lazy"
@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
             </div>
 
             {/* Desktop navigation */}
-            <nav className="hidden md:flex justify-end items-center space-x-1">
+            <nav className="hidden md:flex items-center space-x-1">
                 <Link to="/" onClick={() => handleScrollToSection('video-player')} className={getLinkClass('video-player')}>
                     Beranda
                 </Link>
